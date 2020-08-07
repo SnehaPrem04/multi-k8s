@@ -1,0 +1,30 @@
+language: generic
+sudo: required
+services:
+  - docker
+before-install:
+  - docker build -t snehaprem04/react-test -f ./client/DockerFile.dev ./client
+after_success:
+  - docker build -t snehaprem/multi-client ./client
+  - docker build -t snehaprem/multi-nginx ./Nginx
+  - docker build -t snehaprem/multi-server ./server
+  - docker build -t snehaprem/multi-worker ./worker
+  # Log in to the docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Take those images and push into docker hub
+  - docker push snehaprem/multi-client
+  - docker push snehaprem/multi-nginx
+  - docker push snehaprem/multi-server
+  - docker push snehaprem/multi-worker
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multi-docker"
+  env: "MultiDocker-env-1"
+  bucket-name: "elasticbeanstalk-us-east-1-775322342958"
+  bucket-path: "multi-docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
