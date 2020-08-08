@@ -9,5 +9,5 @@ docker push snehaprem/multi-server:$SHA
 docker push snehaprem/multi-worker:$SHA
 kubectl apply -f K8S
 kubectl set image deployment/server-deployment server=snehaprem/multi-server:$SHA
-kubectl set image deployment/worker-deployment server=snehaprem/multi-worker:$SHA
-kubectl set image deployment/client-deployment server=snehaprem/multi-client:$SHA
+kubectl set image deployment/worker-deployment worker=snehaprem/multi-worker:$SHA
+kubectl set image deployment/client-deployment client=snehaprem/multi-client:$SHA
