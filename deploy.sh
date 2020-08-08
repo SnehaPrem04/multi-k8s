@@ -1,9 +1,9 @@
- docker build -t snehaprem/multi-client:latest -t snehaprem/multi-client:$SHA -f ./client/Dockerfile ./client
- docker build -t snehaprem/multi-server:latest -t snehaprem/multi-server:$SHA -f ./server/Dockerfile ./server
- docker build -t snehaprem/multi-worker:latest -t snehaprem/multi-worker:$SHA -f ./worker/Dockerfile ./worker
- docker push snehaprem/multi-client:latest
- docker push snehaprem/multi-server:latest
- docker push snehaprem/multi-worker:latest
+ docker build -t snehaprem/multi-client -t snehaprem/multi-client:$SHA -f ./client/Dockerfile ./client
+ docker build -t snehaprem/multi-server -t snehaprem/multi-server:$SHA -f ./server/Dockerfile ./server
+ docker build -t snehaprem/multi-worker -t snehaprem/multi-worker:$SHA -f ./worker/Dockerfile ./worker
+ docker push snehaprem/multi-client
+ docker push snehaprem/multi-server
+ docker push snehaprem/multi-worker
  docker push snehaprem/multi-client:$SHA
  docker push snehaprem/multi-server:$SHA
  docker push snehaprem/multi-worker:$SHA
