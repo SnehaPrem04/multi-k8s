@@ -18,9 +18,6 @@ before-install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker build -t snehaprem/react-test -f ./client/DockerFile.dev ./client
 
-script:
-  - docker run -e CI=true snehaprem/react-test npm run test
-
 deploy:
   edge: true
   provider: script
